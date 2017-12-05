@@ -114,7 +114,7 @@ export default {
     TweenLite.to('.caseListItem[data-index="0"]', 1, {autoAlpha: 0, y: -24})
 
     let minScroll = 0
-    window.addEventListener('wheel', function (e) {
+    window.addEventListener('wheel', function (event) {
       event.preventDefault()
       let norm = NormalizeWheel(event)
       minScroll += norm.spinY
