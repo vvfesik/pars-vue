@@ -1,5 +1,5 @@
 <template>
-  <div class="page" style="visibility: visible;" v-if="product">
+  <div class="page" style="visibility: visible;" v-if="product" :class="animateEnter ? 'animateEnter' : ''">
     <div class="hero-module hero__page isCase" :style="'color:' + product.color">
       <app-menu></app-menu>
       <div class="abstract">
@@ -118,6 +118,7 @@
 
 <script>
 import Menu from '@/components/Menu'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'product',
@@ -126,18 +127,45 @@ export default {
   },
   data () {
     return {
-      product: this.$route.params.product
+      // product: this.$route.params.product
+      product: {},
+      animateEnter: false
     }
+  },
+  computed: {
+    ...mapGetters([
+      'productBySlug'
+    ])
+  },
+  created () {
+    this.product = this.productBySlug(this.$route.params.product_slug)
+  },
+  mounted () {
+    setTimeout(() => {
+      this.animateEnter = true
+    }, 500)
   }
 }
 </script>
 
 <style scoped>
-.hero-module {
-  transition: color .36s cubic-bezier(.455,.03,.515,.955), height .3s ease;
+.page {
+  transition: transform 0.9s ease;
 }
-.hero-module.hero__page .media {
-  transition: all .3s ease;
+.page.animateEnter {
+  transform: translateY(-20vh);
 }
+.page.animateEnter .hero-module {
+  transition: color .36s cubic-bezier(.455,.03,.515,.955), transform 1s ease;
+  transform-origin: bottom;
+  transform: translateY(20vh);
+}
+/* .hero-module.hero__page .media {
+  transition: transform 1s ease;
+  transform: scale(1);
+}
+.hero-module.hero__page.animate .media {
+  transform: scale(1.2);
+} */
 
 </style>
