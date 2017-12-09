@@ -70,11 +70,12 @@ export default {
       //   {name: 'Name4', img: 'https://picsum.photos/1900/1024?image=43', color: '#ffd700', textcolor: '#ffd700', text: '4 Lorem ipsum dolor sit amet consectetur adipisicing elit.', slug: 'name4'}
       // ],
       activeProduct: 0,
-      isScrolling: false
+      isScrolling: false,
+      minScroll: 0
     }
   },
   mounted () {
-    var vm = this
+    // var vm = this
     // let currentS = 0
     // let lastS = 0
     // let lastTime = 0
@@ -115,29 +116,15 @@ export default {
     }
     TweenLite.to('.caseListItem[data-index="0"]', 1, {autoAlpha: 0, y: -24})
 
-    let minScroll = 0
-    window.addEventListener('wheel', function (event) {
-      event.preventDefault()
-      let norm = NormalizeWheel(event)
-      minScroll += norm.spinY
-      // currentS += norm.spinY * 50
-      // console.log('minScroll: ' + minScroll)
-      // if (minScroll > 5) {
-      if (minScroll - norm.spinY < minScroll) {
-        if (!vm.isScrolling) {
-          vm.isScrolling = true
-          vm.scrollDn()
-          minScroll = 0
-        }
-      // } else if (minScroll < -5) {
-      } else if (minScroll - norm.spinY > minScroll) {
-        if (!vm.isScrolling) {
-          vm.isScrolling = true
-          vm.scrollUp()
-          minScroll = 0
-        }
-      }
-    })
+    // let minScroll = 0
+    // window.addEventListener('wheel', this.test (event))
+    // window.addEventListener('wheel', function (event) {
+    //   console.log(event)
+    // })
+    window.addEventListener('wheel', this.homeScroll)
+  },
+  beforeDestroy () {
+    window.removeEventListener('wheel', this.homeScroll)
   },
   computed: {
     ...mapGetters([
@@ -145,6 +132,24 @@ export default {
     ])
   },
   methods: {
+    homeScroll (event) {
+      event.preventDefault()
+      let norm = NormalizeWheel(event)
+      this.minScroll += norm.spinY
+      if (this.minScroll - norm.spinY < this.minScroll) {
+        if (!this.isScrolling) {
+          this.isScrolling = true
+          this.scrollDn()
+          this.minScroll = 0
+        }
+      } else if (this.minScroll - norm.spinY > this.minScroll) {
+        if (!this.isScrolling) {
+          this.isScrolling = true
+          this.scrollUp()
+          this.minScroll = 0
+        }
+      }
+    },
     scrollDn () {
       if (this.activeProduct < this.products.length - 1) {
         this.activeProduct++
