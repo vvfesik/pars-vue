@@ -1,17 +1,14 @@
 import imagesLoaded from 'imagesloaded'
 
 export default {
-  imgLoaded ({commit}) {
-    window.onload(function () {
-      imagesLoaded(document.querySelector('#page-wrapper'), { background: true }, function (instance) {
-        setTimeout(function () {
-          commit('imgLoaded')
-        }, 1000)
+  isLoaded ({commit}) {
+    window.addEventListener('DOMContentLoaded', function () {
+      imagesLoaded(document.querySelector('#app'), { background: true }, function (instance) {
+        commit('isLoaded')
       })
     })
   },
+  notLoaded ({commit}) {
+    commit('notLoaded')
+  }
 }
-
-// transform: translateY(calc(20vw + 4.4rem));
-// transition: transform 1s ease;
-// section.section-module.dark {}
