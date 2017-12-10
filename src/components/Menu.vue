@@ -1,19 +1,27 @@
 <template>
   <div class="menu nav desktopNav">
     <ul>
-      <li><router-link to="/">Portfolio</router-link></li>
-      <li><router-link to="/about/">About</router-link></li>
-      <li><router-link to="/contact/">Contact</router-link></li>
+      <li><router-link to="/">Каталог</router-link></li>
+      <li v-for="(page, index) in pages" :key="index" v-if="pages">
+        <router-link :to="{ name: 'Page', params: { page_slug: page.slug } }">{{ page.name }}</router-link>
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'menu',
   data () {
     return {
     }
+  },
+  computed: {
+    ...mapGetters([
+      'pages'
+    ])
   }
 }
 </script>

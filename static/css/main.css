@@ -538,7 +538,7 @@ a {
 }
 
 .hero-module .display .line.n2 {
-  left: 100%
+  transform: scaleX(0)
 }
 
 .hero-module .display .line.top {
@@ -1498,7 +1498,7 @@ body {
   }
 
   .doubletext-module>div {
-      width: 50%
+      width: 48%
   }
 
   .doubletext-module>div:nth-child(2) {

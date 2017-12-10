@@ -23,5 +23,15 @@ export default {
         }
       }
     }
+  },
+  pages (state) {
+    return state.pages
+  },
+  pageBySlug (state, slug) {
+    return function (slug) {
+      if (state.pages.length) {
+        return state.pages.find(x => x.slug === slug)
+      }
+    }
   }
 }

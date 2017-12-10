@@ -141,7 +141,6 @@ export default {
     this.$store.dispatch('isLoaded')
   },
   beforeRouteUpdate (to, from, next) {
-    console.log(to.name)
     if (to.name === 'Product') {
       this.productLeave()
       setTimeout(() => {
@@ -193,21 +192,6 @@ export default {
 .page {
   transition: transform 0.9s ease;
 }
-/* .page.animateEnter {
-  transform: translateY(-20vh);
-}
-.page.animateEnter .hero-module {
-  transition: color .36s cubic-bezier(.455,.03,.515,.955), transform 1s ease;
-  transform-origin: bottom;
-  transform: translateY(20vh);
-} */
-/* .hero-module.hero__page .media {
-  transition: transform 1s ease;
-  transform: scale(1);
-}
-.hero-module.hero__page.animate .media {
-  transform: scale(1.2);
-} */
 .section-module.product-loaded {
   transform: translateY(0) !important;
 }
