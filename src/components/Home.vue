@@ -100,9 +100,9 @@ export default {
 
     var caseBgs = document.getElementsByClassName('caseBg')
     for (let caseBg of caseBgs) {
-      TweenLite.set(caseBg, {autoAlpha: 0, scale: 1.2, y: 0})
+      TweenLite.set(caseBg, {autoAlpha: 0, scale: 1.3, y: 0})
     }
-    TweenLite.to('.caseBg[data-index="0"]', 1, {autoAlpha: 1, scale: 1.1, y: 0})
+    TweenLite.to('.caseBg[data-index="0"]', 1, {autoAlpha: 1, scale: 1.2, y: 0})
 
     var caseDescs = document.getElementsByClassName('caseDesc')
     for (let caseDesc of caseDescs) {
@@ -246,9 +246,11 @@ export default {
   right: 0;
   bottom: 0;
   contain: strict;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-size: cover;
+  background-position: 50% 50%;
+  transform: scale(1.2)
 }
 .caseDesc a svg, .caseList a svg {
   transform: scale(0);

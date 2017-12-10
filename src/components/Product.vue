@@ -77,19 +77,7 @@
     </div>
     <div id="next-case-module-con" class="next-case-module-con" v-if="product">
       <router-link class="hero-module next-case-module" :to="'/p/' + productNext.slug" :style="'color:' + productNext.color">
-        <div class="nav desktopNav">
-          <ul>
-            <li>
-              <p>Portfolio</p>
-            </li>
-            <li>
-              <p>About</p>
-            </li>
-            <li>
-              <p>Contact</p>
-            </li>
-          </ul>
-        </div>
+        <app-menu></app-menu>
         <div class="inner">
           <div class="display">
             <div class="mask">
@@ -156,14 +144,17 @@ export default {
     console.log(to.name)
     if (to.name === 'Product') {
       this.productLeave()
-      // setTimeout(() => {
-      //   next()
-      //   this.productEnter()
-      //   this.$store.dispatch('notLoaded')
-      //   this.product = this.productBySlug(this.$route.params.product_slug)
-      //   this.productNext = this.productNextBySlug(this.$route.params.product_slug)
-      //   this.$store.dispatch('isLoaded')
-      // }, 1000)
+      setTimeout(() => {
+        next()
+        this.$store.dispatch('notLoaded')
+        this.product = this.productBySlug(this.$route.params.product_slug)
+        this.productNext = this.productNextBySlug(this.$route.params.product_slug)
+        this.productEnter()
+        // setTimeout(() => {
+        //   document.getElementById('temp').remove()
+        // }, 300)
+        // this.$store.dispatch('isLoadedMin')
+      }, 1000)
     } else next()
   },
   methods: {
@@ -174,19 +165,25 @@ export default {
       document.getElementById('page').appendChild(newDiv)
       // document.getElementById('page').appendChild(document.createElement('div').setAttribute('id', 'temp').appendChild(document.getElementById('next-case-module-con').cloneNode(true)))
       // document.getElementById('page').appendChild(document.getElementById('next-case-module-con').cloneNode(true))
+      TweenLite.to('#temp .next-case-module', 0.6, {height: '100vh'})
+      TweenLite.to('#temp h2.label', 0.3, {scaleX: 0, autoAlpha: 0})
+      TweenLite.to('#temp h2.logo', 0.3, {autoAlpha: 1, delay: 0.6})
+      TweenLite.to('#temp .descCon > div', 0.3, {autoAlpha: 1, delay: 0.6})
+      // TweenLite.to('#temp .next-case-module .nav', 0.3, {autoAlpha: 1, y: 0, delay: 0.6})
+      TweenLite.set('#temp .next-case-module-con', {top: 0, delay: 0.6})
+      TweenLite.set('.menu', {autoAlpha: 0})
     },
-    // productLeave () {
-    //   TweenLite.to('.next-case-module-con, .next-case-module', 0.6, {height: '100vh'})
-    //   TweenLite.set('.next-case-module', {position: 'absolute', bottom: 0, pointerEvents: 'none'})
-    //   TweenLite.to('.next-case-module h2.label', 0.3, {scaleX: 0})
-    //   TweenLite.fromTo('.next-case-module h2.logo', 0.3, {scale: 0}, {autoAlpha: 1, scale: 0.333, delay: 0.6})
-    //   TweenLite.to('.next-case-module .descCon > div', 0.3, {autoAlpha: 1, delay: 0.6})
-    //   TweenLite.set('.maincontent', {autoAlpha: 0})
-    //   TweenLite.to('.maincontent', 0.6, {height: 0})
-    //   TweenLite.to('.next-case-module-con', 0.1, {autoAlpha: 0, delay: 0.9})
-    // },
     productEnter () {
-      TweenLite.set('.next-case-module-con, .next-case-module, .next-case-module h2.label, .next-case-module h2.logo, .next-case-module .descCon > div, .maincontent', {height: 'initial', position: 'initial', bottom: 'initial', pointerEvents: 'initial', scaleX: 1, scale: 1, autoAlpha: 1})
+      // TweenLite.to('#temp .next-case-module .media.image', 0.9, {scale: 1.3})
+      this.$store.dispatch('isLoadedMin')
+      setTimeout(() => {
+        TweenLite.to('#temp .next-case-module .media.image', 1, {scale: 1.3})
+        TweenLite.to('#temp .next-case-module-con', 1, {height: '80vh'})
+      }, 300)
+      setTimeout(() => {
+        document.getElementById('temp').remove()
+        TweenLite.to('.menu', 0.3, {autoAlpha: 1})
+      }, 1300)
     }
   }
 }
@@ -220,9 +217,31 @@ export default {
   height: initial;
   width: initial;
   transition: transform 1s ease;
-  transform: scale(1);
+  transform: scale(1.2);
 }
 .media.image.product-loaded {
+  transform: scale(1.3);
+}
+#temp .next-case-module-con {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  height: inherit;
+  overflow: hidden;
+}
+#temp a, #temp h2, #temp .caseName.active{
+  pointer-events: none;
+}
+#temp .media.image.product-loaded,
+#temp .media.image {
   transform: scale(1.2);
+  transition: none;
+}
+.next-case-module .media.image,
+.next-case-module .media.image.product-loaded {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
 }
 </style>

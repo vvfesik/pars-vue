@@ -9,6 +9,9 @@ export default {
       })
     })
   },
+  isLoadedMin ({commit}) {
+    commit('isLoaded')
+  },
   notLoaded ({commit}) {
     commit('notLoaded')
   }
