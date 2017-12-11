@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,800&subset=cyrillic-ext');
 a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,dialog,div,dl,dt,em,embed,fieldset,figcaption,figure,font,footer,form,header,hgroup,hr,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,meter,nav,object,ol,output,p,pre,progress,q,rp,rt,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video {
   border: 0;
   margin: 0;
@@ -35,6 +36,11 @@ ol,ul {
 
 li {
   display: list-item
+}
+
+.section-module ul {
+  list-style-type: circle;
+  list-style-position: inside;
 }
 
 table {
@@ -96,7 +102,8 @@ html {
 }
 
 body {
-  font-family: aktiv-grotesk,Tahoma,sans-serif;
+  /* font-family: aktiv-grotesk,Tahoma,sans-serif; */
+  font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   line-height: 1.65em;
   font-size: 15px
@@ -200,7 +207,7 @@ a {
   position: relative;
   display: block;
   padding: .75em 1.5em .7em;
-  width: 8em;
+  width: 10em;
   text-align: center;
   margin-top: 5.236rem;
   font-size: 12px;

@@ -6,7 +6,8 @@
         <div class="display">
           <div class="mask" >
             <!-- <h1 class="logo large"><a href="/">North-East Venture</a></h1> -->
-            <h1 class="logo small"><a href="/">P.A.R.S.</a></h1>
+            <!-- <h1 class="logo small"><a href="/">P.A.R.S.</a></h1> -->
+            <img src="../../static/img/logo_pars_small.png" alt="PARS logo" class="logo">
             <div class="caseName" :data-index="index" v-for="(product, index) in products" :key="index">
               <h2>{{ product.name }}</h2>
             </div>
@@ -19,23 +20,23 @@
           <div class="progressLine bottom"></div>
         </div>
         <div class="caseList">
-          <a class="caseListItem" href="/aiayu/" :data-index="index" v-for="(product, index) in products" :key="index">
+          <router-link class="caseListItem" :to="'/p/' + product.slug" :data-index="index" v-for="(product, index) in products" :key="index">
             <p>{{ product.name }}</p>
             <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="arrow" width="16" height="16" transform="matrix(1.0000000000, 0.0000000000, 0.0000000000, 1.0000000000, -14.5000000000, 0.0000000000)">
-              <path d="M0.50000000,7.50000000 L14.50000000,7.50000000 M9.50000000,2.50000000 L14.50000000,7.50000000 L9.50000000,12.50000000" fill="none" :stroke="product.textcolor" stroke-width="1px"></path>
+              <path d="M0.50000000,7.50000000 L14.50000000,7.50000000 M9.50000000,2.50000000 L14.50000000,7.50000000 L9.50000000,12.50000000" fill="none" :stroke="product.color" stroke-width="1px"></path>
             </svg>
-          </a>
+          </router-link>
         </div>
         <div class="descCon">
-          <div class="caseDesc" :data-index="index" v-for="(product, index) in products" :key="index" :style="'display: block; pointer-events: all; color:' + product.textcolor">
+          <div class="caseDesc" :data-index="index" v-for="(product, index) in products" :key="index" :style="'display: block; pointer-events: all; color:' + product.color">
             <div>
               <p>{{ product.text }}</p>
             </div>
             <!-- <router-link :to="{ name: 'Product', params: { product_slug: product.slug, product: product } }" :product="product" class="label-button" :style="'color: black; background-color:' + product.textcolor + ';'"> -->
-            <router-link :to="'/p/' + product.slug" class="label-button" :style="'color: black; background-color:' + product.textcolor + ';'">
-              <p>Read more</p>
+            <router-link :to="'/p/' + product.slug" class="label-button" :style="'color:' + product.textcolor + '; background-color:' + product.color + ';'">
+              <p>Інформація</p>
               <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="arrow" width="16" height="16">
-                <path d="M0.50000000,7.50000000 L14.50000000,7.50000000 M9.50000000,2.50000000 L14.50000000,7.50000000 L9.50000000,12.50000000" fill="none" stroke="#000000" stroke-width="1px"></path>
+                <path d="M0.50000000,7.50000000 L14.50000000,7.50000000 M9.50000000,2.50000000 L14.50000000,7.50000000 L9.50000000,12.50000000" fill="none" :stroke="product.textcolor" stroke-width="1px"></path>
               </svg>
             </router-link>
           </div>

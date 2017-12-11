@@ -9,9 +9,10 @@
         <div class="inner">
           <div class="display">
             <div class="mask">
-              <h2 class="logo">
+              <!-- <h2 class="logo">
                 <router-link to="/">P.A.R.S.</router-link>
-              </h2>
+              </h2> -->
+              <img src="../../static/img/logo_pars_small.png" alt="PARS logo" class="logo">
               <h1 class="caseName" style="opacity: 1;">{{ page.name }}</h1>
             </div>
             <div class="line top n1"></div>
@@ -42,6 +43,9 @@
         <div class="line-module"></div>
       </div>
     </section>
+    <div class="media-grid-module num3" v-if="page.photos && page.photos.length">
+      <div class="media image loaded" v-for="(photo, index) in page.photos" :key="index" :style="'background-position: 50% 50%; background-size: cover; background-image: url(' + photo + ');'"></div>
+    </div>
   </div>
 </template>
 

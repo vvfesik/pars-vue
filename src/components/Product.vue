@@ -10,9 +10,10 @@
           <div class="inner">
             <div class="display">
               <div class="mask">
-                <h2 class="logo">
+                <!-- <h2 class="logo">
                   <router-link to="/">P.A.R.S.</router-link>
-                </h2>
+                </h2> -->
+                <img src="../../static/img/logo_pars_small.png" alt="PARS logo" class="logo">
                 <h1 class="caseName">{{ product.name }}</h1>
               </div>
               <div class="line top n1"></div>
@@ -30,21 +31,24 @@
         <div>
           <div class="headline-module">
             <div class="inner">
-              <h3>About</h3>
+              <h3>{{ product.textblock.title }}</h3>
             </div>
           </div>
           <div class="lead-module">
             <div class="inner">
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt sed maxime voluptate quia deserunt modi vero, commodi, nostrum sunt, sapiente voluptas optio. Neque sequi earum, culpa voluptas officiis laboriosam accusantium.</p>
+              <p>{{ product.textblock.textBig }}</p>
             </div>
           </div>
           <div class="doubletext-module">
-            <div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, provident! Tempore, natus! Voluptatum mollitia dolorem fugit modi pariatur et impedit placeat, fuga accusamus quibusdam consectetur excepturi aliquam. Asperiores, perspiciatis nulla!</p>
-            </div>
-            <div>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint optio distinctio, corrupti tenetur reiciendis aliquam. Nobis labore voluptate soluta incidunt id nisi, quam iure officia est culpa corrupti commodi deserunt.</p>
-            </div>
+            <div v-html="product.textblock.textColumn1"></div>
+            <div v-html="product.textblock.textColumn2"></div>
+          </div>
+        </div>
+      </section>
+      <section class="section-module" v-if="product.textblock.textFull" style="background-color: #fff;">
+        <div>
+          <div class="doubletext-module" :style="'color:' + product.color + ';'">
+            <div style="width:100%;" v-html="product.textblock.textFull"></div>
           </div>
         </div>
       </section>
@@ -57,21 +61,19 @@
         <div>
           <div class="headline-module">
             <div class="inner">
-              <h3>Contact</h3>
+              <h3>{{ contactpage.name }}</h3>
+            </div>
+          </div>
+          <div class="lead-module">
+            <div class="inner">
+              <p>{{ contactpage.textblock.textBig }}</p>
             </div>
           </div>
           <div class="doubletext-module">
-            <div>
-              <h4>Rokoko</h4>
-              <p><span>Sankt Gertruds Stræde 6E</span></p>
-              <p><span>1129 Copenhagen K</span></p>
-              <p><span>Denmark</span></p>
-            </div>
-            <div>
-              <h4>Visit</h4>
-              <p><a href="https://www.rokoko.com/" rel="noopener noreferrer" target="_blank" title="Rokoko.com">Rokoko.com</a></p>
-            </div>
+            <div v-html="contactpage.textblock.textColumn1"></div>
+            <div v-html="contactpage.textblock.textColumn2"></div>
           </div>
+          <!-- <div class="line-module"></div> -->
         </div>
       </section>
     </div>
@@ -82,7 +84,8 @@
           <div class="display">
             <div class="mask">
               <h2 class="label">Дивимось далі</h2>
-              <h2 class="logo left"><router-link to="/">P.A.R.S.</router-link></h2>
+              <!-- <h2 class="logo left"><router-link to="/">P.A.R.S.</router-link></h2> -->
+              <img src="../../static/img/logo_pars_small.png" alt="PARS logo" class="logo">
               <div class="caseName active" style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">
                 <h2>{{ productNext.name }}</h2>
               </div>
@@ -122,6 +125,7 @@ export default {
     return {
       product: {},
       productNext: {},
+      contactpage: {},
       animateEnter: false
     }
   },
@@ -129,7 +133,8 @@ export default {
     ...mapGetters([
       'isLoaded',
       'productBySlug',
-      'productNextBySlug'
+      'productNextBySlug',
+      'pageBySlug'
     ])
   },
   beforeCreate () {
@@ -137,6 +142,7 @@ export default {
   },
   created () {
     this.product = this.productBySlug(this.$route.params.product_slug)
+    this.contactpage = this.pageBySlug('contact')
     this.productNext = this.productNextBySlug(this.$route.params.product_slug)
     this.$store.dispatch('isLoaded')
   },
