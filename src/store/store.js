@@ -59,7 +59,7 @@ export const store = new Vuex.Store({
         name: 'LGM-1/120',
         slug: 'lgm-1-120',
         img: '../../static/img/lgm-1-120.png',
-        color: '#c79f0e',
+        color: '#f5ca30',
         textcolor: '#f8f8ff',
         text: 'Пристрій контролю геометричних параметрів каналу ствола LGM-1/120',
         textblock: {

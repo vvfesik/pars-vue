@@ -30,7 +30,7 @@
         <div class="descCon">
           <div class="caseDesc" :data-index="index" v-for="(product, index) in products" :key="index" :style="'display: block; pointer-events: all; color:' + product.color">
             <div>
-              <p>{{ product.text }}</p>
+              <p class="desc">{{ product.text }}</p>
             </div>
             <!-- <router-link :to="{ name: 'Product', params: { product_slug: product.slug, product: product } }" :product="product" class="label-button" :style="'color: black; background-color:' + product.textcolor + ';'"> -->
             <router-link :to="'/p/' + product.slug" class="label-button" :style="'color:' + product.textcolor + '; background-color:' + product.color + ';'">
@@ -274,5 +274,15 @@ export default {
 }
 .caseList a:hover p {
   transform: translateX(-20px);
+}
+@media screen and (max-width: 1024px) {
+  .caseDesc, .caseName {
+    color: #fff !important;
+  }
+  .caseDesc p.desc {
+    letter-spacing: 1px;
+    font-size: 3rem;
+    line-height: 1.3;
+  }
 }
 </style>

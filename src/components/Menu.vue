@@ -28,11 +28,9 @@ export default {
 
 <style scoped>
 .menu {
-  margin-left: 11.089rem;
-  margin-right: 11.089rem;
-  /* height: 100px;
-  display: flex;
-  align-items: center; */
+  max-width: 1440px;
+  margin-left: 2.618rem;
+  margin-right: 2.618rem;
 }
 ul {
   margin: 0;
@@ -46,5 +44,45 @@ a {
   text-transform: uppercase;
   /* color: red; */
   text-decoration: none;
+}
+@media screen and (min-width: 321px) {
+  .menu {
+    margin-left: 2.618rem;
+    margin-right: 2.618rem;
+  }
+}
+@media screen and (min-width: 769px) {
+  .menu {
+    margin-left: 4.236rem;
+    margin-right: 4.236rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .menu {
+    margin-left: 6.854rem;
+    margin-right: 6.854rem;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .menu {
+    margin-left: 11.089rem;
+    margin-right: 11.089rem;
+  }
+}
+@media screen and (min-width: 1550px) {
+  .menu {
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 375px) {
+  .menu ul {
+    justify-content: space-around;
+  }
+  .menu ul li:first-child {
+    margin-left: initial;
+  }
+  .menu ul li a {
+    padding: 0;
+  }
 }
 </style>
