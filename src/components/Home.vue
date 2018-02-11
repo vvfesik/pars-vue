@@ -5,8 +5,6 @@
       <div class="inner">
         <div class="display">
           <div class="mask" >
-            <!-- <h1 class="logo large"><a href="/">North-East Venture</a></h1> -->
-            <!-- <h1 class="logo small"><a href="/">P.A.R.S.</a></h1> -->
             <img src="../../static/img/logo_pars_small.png" alt="PARS logo" class="logo">
             <div class="caseName" :data-index="index" v-for="(product, index) in products" :key="index">
               <h2>{{ product.name }}</h2>
@@ -32,7 +30,6 @@
             <div>
               <p class="desc">{{ product.text }}</p>
             </div>
-            <!-- <router-link :to="{ name: 'Product', params: { product_slug: product.slug, product: product } }" :product="product" class="label-button" :style="'color: black; background-color:' + product.textcolor + ';'"> -->
             <router-link :to="'/p/' + product.slug" class="label-button" :style="'color:' + product.textcolor + '; background-color:' + product.color + ';'">
               <p>Інформація</p>
               <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="arrow" width="16" height="16">
@@ -55,7 +52,6 @@ import Menu from '@/components/Menu'
 import NormalizeWheel from '@/assets/js/normwheel'
 import { TweenLite } from 'gsap'
 import { mapGetters } from 'vuex'
-// require('../../static/js/main.js')
 
 export default {
   name: 'home',
@@ -79,23 +75,6 @@ export default {
     } else next()
   },
   mounted () {
-    // var vm = this
-    // let currentS = 0
-    // let lastS = 0
-    // let lastTime = 0
-    // function Velocity (e) {
-    //   if (vm.isScrolling) {
-    //     let speed = (currentS - lastS) / (e - lastTime)
-    //     if (speed < -5) speed = -5
-    //     if (speed > 5) speed = 5
-    //     lastTime = e
-    //     lastS = currentS
-    //     console.log('speed: ' + speed)
-    //     window.requestAnimationFrame(Velocity)
-    //   }
-    // }
-    // Velocity()
-
     var caseNames = document.getElementsByClassName('caseName')
     for (let caseName of caseNames) {
       TweenLite.set(caseName, {autoAlpha: 0, y: 216})
@@ -120,11 +99,6 @@ export default {
     }
     TweenLite.to('.caseListItem[data-index="0"]', 1, {autoAlpha: 0, y: -24})
 
-    // let minScroll = 0
-    // window.addEventListener('wheel', this.test (event))
-    // window.addEventListener('wheel', function (event) {
-    //   console.log(event)
-    // })
     window.addEventListener('wheel', this.homeScroll)
   },
   beforeDestroy () {

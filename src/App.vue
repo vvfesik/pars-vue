@@ -13,9 +13,6 @@ export default {
 </script>
 
 <style>
-/* #app {
-  font-family: Tahoma, sans-serif;
-} */
 .hero-module .line.top.n1, .hero-module .line.bottom.n2 {
   transform-origin: left;
 }

@@ -10,9 +10,6 @@
           <div class="inner">
             <div class="display">
               <div class="mask">
-                <!-- <h2 class="logo">
-                  <router-link to="/">P.A.R.S.</router-link>
-                </h2> -->
                 <img src="../../static/img/logo_pars_small.png" alt="PARS logo" class="logo">
                 <h1 class="caseName">{{ product.name }}</h1>
               </div>
@@ -73,7 +70,6 @@
             <div v-html="contactpage.textblock.textColumn1"></div>
             <div v-html="contactpage.textblock.textColumn2"></div>
           </div>
-          <!-- <div class="line-module"></div> -->
         </div>
       </section>
     </div>
@@ -84,7 +80,6 @@
           <div class="display">
             <div class="mask">
               <h2 class="label">Дивимось далі</h2>
-              <!-- <h2 class="logo left"><router-link to="/">P.A.R.S.</router-link></h2> -->
               <img src="../../static/img/logo_pars_small.png" alt="PARS logo" class="logo">
               <div class="caseName active" style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">
                 <h2>{{ productNext.name }}</h2>
@@ -101,8 +96,6 @@
                 <p>{{ productNext.text }}</p>
               </div>
             </div>
-            <!-- <p>Read more</p><svg class="arrow" height="16" width="16"> -->
-            <!-- <path d="M14.50000000,7.50000000 L14.50000000,7.50000000 M14.50000000,7.50000000 L14.50000000,7.50000000" fill="none" stroke="#27282c" stroke-width="1px"></path></svg> -->
           </div>
         </div>
         <div class="media image" :style="'background-position: 50% 50%; background-size: cover; background-image: url('+ productNext.img +');'" :class="isLoaded === true ? 'product-loaded' : ''"></div>
@@ -155,10 +148,6 @@ export default {
         this.product = this.productBySlug(this.$route.params.product_slug)
         this.productNext = this.productNextBySlug(this.$route.params.product_slug)
         this.productEnter()
-        // setTimeout(() => {
-        //   document.getElementById('temp').remove()
-        // }, 300)
-        // this.$store.dispatch('isLoadedMin')
       }, 1000)
     } else next()
   },
@@ -168,18 +157,14 @@ export default {
       newDiv.id = 'temp'
       newDiv.appendChild(document.getElementById('next-case-module-con').cloneNode(true))
       document.getElementById('page').appendChild(newDiv)
-      // document.getElementById('page').appendChild(document.createElement('div').setAttribute('id', 'temp').appendChild(document.getElementById('next-case-module-con').cloneNode(true)))
-      // document.getElementById('page').appendChild(document.getElementById('next-case-module-con').cloneNode(true))
       TweenLite.to('#temp .next-case-module', 0.6, {height: '100vh'})
       TweenLite.to('#temp h2.label', 0.3, {scaleX: 0, autoAlpha: 0})
       TweenLite.to('#temp h2.logo', 0.3, {autoAlpha: 1, delay: 0.6})
       TweenLite.to('#temp .descCon > div', 0.3, {autoAlpha: 1, delay: 0.6})
-      // TweenLite.to('#temp .next-case-module .nav', 0.3, {autoAlpha: 1, y: 0, delay: 0.6})
       TweenLite.set('#temp .next-case-module-con', {top: 0, delay: 0.6})
       TweenLite.set('.menu', {autoAlpha: 0})
     },
     productEnter () {
-      // TweenLite.to('#temp .next-case-module .media.image', 0.9, {scale: 1.3})
       this.$store.dispatch('isLoadedMin')
       setTimeout(() => {
         TweenLite.to('#temp .next-case-module .media.image', 1, {scale: 1.3})

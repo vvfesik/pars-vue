@@ -42,7 +42,6 @@ li {
 a {
   padding: 20px;
   text-transform: uppercase;
-  /* color: red; */
   text-decoration: none;
 }
 @media screen and (min-width: 321px) {

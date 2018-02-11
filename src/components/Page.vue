@@ -9,9 +9,6 @@
         <div class="inner">
           <div class="display">
             <div class="mask">
-              <!-- <h2 class="logo">
-                <router-link to="/">P.A.R.S.</router-link>
-              </h2> -->
               <img src="../../static/img/logo_pars_small.png" alt="PARS logo" class="logo">
               <h1 class="caseName" style="opacity: 1;">{{ page.name }}</h1>
             </div>
